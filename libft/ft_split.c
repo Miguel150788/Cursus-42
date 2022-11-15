@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static	int	count_words(char const *s, char c)
+static	int	count_caract(char const *s, char c)
 {
 	int	words;
 	int	i;
@@ -21,21 +21,21 @@ static	int	count_words(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (0);
-	if (s[i] != c)
+	if (s[i] == c)
 	{
-		i++;
-		words++;
+		words--;
 	}
 	while (s[i] != '\0')
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+		if ((s[i] == c) && (s[i + 1] != c) && (s[i + 1] != '\0'))
 			words++;
-			i++;
+		i++;
 	}
+	words++;
 	return (words);
 }
 
-static	char	*make_string(char const *s, char c)
+static	char	*cuenta_string(char const *s, char c)
 {
 	char		*word;
 	int			i;
@@ -65,7 +65,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	num_words = count_words(s, c);
+	num_words = count_caract(s, c);
 	result = (char **)malloc (sizeof(char *) * (num_words + 1));
 	if (!result)
 		return (NULL);
@@ -75,7 +75,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s && *s != c)
 		{
-			result[i] = make_string (s, c);
+			result[i] = cuenta_string (s, c);
 			i++;
 			while (*s && *s != c)
 				s++;

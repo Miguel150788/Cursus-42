@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbueno-m <m@student.42malaga.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 12:46:12 by mbueno-m          #+#    #+#             */
-/*   Updated: 2022/09/26 12:46:16 by mbueno-m         ###   ########.fr       */
+/*   Created: 2022/10/21 10:21:25 by mbueno-m          #+#    #+#             */
+/*   Updated: 2022/10/21 10:21:27 by mbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (c >= '0' && c <= '9')
+	if (lst == NULL)
+		return (NULL);
+	while (lst -> next)
 	{
-		return (1);
+		lst = lst->next;
 	}
-	else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (lst);
 }

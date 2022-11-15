@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbueno-m <m@student.42malaga.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 12:46:12 by mbueno-m          #+#    #+#             */
-/*   Updated: 2022/09/26 12:46:16 by mbueno-m         ###   ########.fr       */
+/*   Created: 2022/10/27 10:59:52 by mbueno-m          #+#    #+#             */
+/*   Updated: 2022/10/27 10:59:55 by mbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isalnum(int c)
+int	ft_printf(char const *str, ...)
 {
-	if (c >= '0' && c <= '9')
+	va_list		arg;
+	size_t		count;
+
+	va_start(arg, str);
+	count = 0;
+	while (*str)
 	{
-		return (1);
+		if (*str == '%')
+		{
+			str++;
+			ft_comper(arg, (char *) str, &count);
+		}
+		else
+			ft_putchar(*str, &count);
+		str++;
+		if (!str)
+		{
+			str = "(NULL)";
+			va_end(arg);
+		}
 	}
-	else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	va_end(arg);
+	return (count);
 }

@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbueno-m <m@student.42malaga.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 12:46:12 by mbueno-m          #+#    #+#             */
-/*   Updated: 2022/09/26 12:46:16 by mbueno-m         ###   ########.fr       */
+/*   Created: 2022/11/15 09:56:21 by mbueno-m          #+#    #+#             */
+/*   Updated: 2022/11/15 09:56:22 by mbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isalnum(int c)
+void	ft_putnbr(int nb, size_t *count)
 {
-	if (c >= '0' && c <= '9')
+	if (nb == -2147483648)
 	{
-		return (1);
+		ft_putchar('-', count);
+		ft_putchar('2', count);
+		ft_putnbr(147483648, count);
 	}
-	else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	else if (nb < 0)
 	{
-		return (1);
+		ft_putchar('-', count);
+		nb = -nb;
+		ft_putnbr(nb, count);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr ((nb / 10), count);
+		ft_putnbr ((nb % 10), count);
 	}
 	else
 	{
-		return (0);
+		ft_putchar ((nb + '0'), count);
 	}
 }

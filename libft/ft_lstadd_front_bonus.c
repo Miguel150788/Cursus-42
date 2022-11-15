@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbueno-m <m@student.42malaga.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 12:46:12 by mbueno-m          #+#    #+#             */
-/*   Updated: 2022/09/26 12:46:16 by mbueno-m         ###   ########.fr       */
+/*   Created: 2022/10/21 10:20:25 by mbueno-m          #+#    #+#             */
+/*   Updated: 2022/10/21 10:20:26 by mbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (c >= '0' && c <= '9')
+	if (lst && new)
 	{
-		return (1);
-	}
-	else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
+		new->next = *lst;
+		*lst = new;
 	}
 }

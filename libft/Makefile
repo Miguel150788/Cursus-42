@@ -13,12 +13,15 @@
 
 NAME = libft.a
 
-MY_SOURCES = ft_toupper.c\
-			ft_atoi.c\
-			ft_tolower.c\
-			ft_strlen.c\
-			ft_isascii.c\
-			ft_isalnum.c\
+CFLAGS = -Wall -Werror -Wextra
+CC		= gcc
+AR 		= ar crs
+RM 		= rm -f
+
+OBJS = $(MY_SOURCES:.c=.o)
+
+MY_SOURCES = ft_toupper.c ft_atoi.c ft_tolower.c ft_strlen.c\
+			ft_isascii.c ft_isalnum.c\
 			ft_isprint.c\
 			ft_isalpha.c\
 			ft_isdigit.c\
@@ -49,44 +52,39 @@ MY_SOURCES = ft_toupper.c\
 			ft_split.c\
 
 
-
-MY_SOURCES_B =	ft_lstnew.c\
-				ft_lstadd_front.c\
-				ft_lstsize.c\
-				ft_lstlast.c\
-				ft_lstadd_back.c\
-				ft_lstdelone.c\
-				ft_lstclear.c\
-				ft_lstiter.c\
-				ft_lstmap.c\
-
-
-
-
-
-
-OBJS = $(MY_SOURCES:.c=.o)
 OBJS_B = $(MY_SOURCES_B:.c=.o)
 
-CCFLAGS += -Wall -Werror -Wextra
-CC		= cc
-.c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
-${NAME}:	${OBJS}
-			ar rc  ${NAME} ${OBJS}
-			ranlib ${NAME}
-bonus:		${OBJS} ${OBJS_B}
-			ar rc ${NAME} ${OBJS} ${OBJS_B}
-			ranlib ${NAME}
+MY_SOURCES_B =	ft_lstnew_bonus.c\
+				ft_lstadd_front_bonus.c\
+				ft_lstsize_bonus.c\
+				ft_lstlast_bonus.c\
+				ft_lstadd_back_bonus.c\
+				ft_lstdelone_bonus.c\
+				ft_lstclear_bonus.c\
+				ft_lstiter_bonus.c\
+				ft_lstmap_bonus.c\
+
+
+
 
 all : $(NAME)
 
+
+${NAME}:	${OBJS}
+			${AR}  ${NAME} ${OBJS}
+
+
+
+bonus:		${OBJS} ${OBJS_B}
+			${AR} ${NAME} ${OBJS} ${OBJS_B}
+			
+
 clean: 
-		rm -f $(OBJS) $(OBJS_B)
+		${RM} $(OBJS) $(OBJS_B)
 
 fclean: clean 
-		rm -f $(NAME)
+		 ${RM} $(NAME)
 
 re : fclean all 
 
-.PHONY:		all clean fclean re libft.a bonus
+.PHONY:		all clean fclean re bonus

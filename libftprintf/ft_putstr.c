@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbueno-m <m@student.42malaga.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 12:46:12 by mbueno-m          #+#    #+#             */
-/*   Updated: 2022/09/26 12:46:16 by mbueno-m         ###   ########.fr       */
+/*   Created: 2022/11/15 09:56:35 by mbueno-m          #+#    #+#             */
+/*   Updated: 2022/11/15 09:56:36 by mbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isalnum(int c)
-{
-	if (c >= '0' && c <= '9')
+#include "ft_printf.h"
+//recorrer char a char y lo imprime como String
+void	ft_putstr(char *str, size_t *count)
+{	
+	if (!str)
+		str = "(null)";
+	while (*str)
 	{
-		return (1);
-	}
-	else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
+		ft_putchar(*str, count);
+		str++;
 	}
 }
